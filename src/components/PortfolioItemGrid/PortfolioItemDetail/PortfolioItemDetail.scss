@@ -1,0 +1,134 @@
+.content {
+  margin: 0 auto;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  align-items: center;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+  &__item {
+    padding: 10rem 5vw 10rem;
+    grid-area: 1 / 1 / 1 / 1;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: none;
+
+    &--current {
+      height: auto;
+      opacity: 1;
+      padding: 3rem 5vw 10rem;
+      pointer-events: auto;
+      display: block;
+
+      ~ .content__close {
+        pointer-events: auto;
+      }
+    }
+
+    &-intro {
+      position: relative;
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: 100%;
+      align-items: center;
+    }
+
+    &-img {
+      position: relative;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      grid-area: 1 / 1 / 1 / 1;
+      visibility: hidden;
+    }
+
+    &-title {
+      position: relative;
+      font-size: 7vw;
+      line-height: 1;
+      text-align: center;
+      margin: 0;
+      padding: 0 5vw;
+      white-space: nowrap;
+      grid-area: 1 / 1 / 1 / 1;
+
+      > span {
+        white-space: pre;
+        display: inline-block;
+        opacity: 0;
+        transform: translate(0%, 50%) matrix(1, 0, 0, 1, 0, 0);
+      }
+    }
+
+    &-subtitle {
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: normal;
+      margin: 3rem auto;
+    }
+
+    &-content {
+      opacity: 0;
+      > * {
+        padding-bottom: 2rem;
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 0.75rem;
+    left: 50%;
+    z-index: 100;
+    transform: translateX(-50%);
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    color: var(--color-text);
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__indicator {
+    position: absolute;
+    top: calc(100vh - 6rem);
+    left: calc(50% - 0.75rem);
+    display: none;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__close,
+  &__indicator {
+    opacity: 0;
+  }
+}
+
+@media screen and (min-width: 55em) {
+  .content {
+    &__item {
+      &-subtitle {
+        font-size: 3vw;
+      }
+      &-img {
+        max-width: none;
+        height: calc(100vh - 6rem);
+      }
+      &-subtitle {
+        max-width: 50%;
+      }
+    }
+    &__indicator {
+      display: block;
+    }
+  }
+}
